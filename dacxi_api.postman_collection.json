@@ -1,0 +1,150 @@
+{
+	"info": {
+		"_postman_id": "45e678e8-06a4-454b-a3a2-bb7cdf2b0959",
+		"name": "dacxi_api",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "coins",
+			"item": [
+				{
+					"name": "prices",
+					"item": [
+						{
+							"name": "api.coins.prices.latest",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{api_url}}/coins/prices/latest/btc",
+									"host": [
+										"{{api_url}}"
+									],
+									"path": [
+										"coins",
+										"prices",
+										"latest",
+										"btc"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "api.coins.prices.history",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{api_url}}/coins/prices/history/btc",
+									"host": [
+										"{{api_url}}"
+									],
+									"path": [
+										"coins",
+										"prices",
+										"history",
+										"btc"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "api.coins.prices.watch",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{api_url}}/coins/prices/watch/btc",
+									"host": [
+										"{{api_url}}"
+									],
+									"path": [
+										"coins",
+										"prices",
+										"watch",
+										"btc"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "api_url",
+			"value": "http://localhost:80/api"
+		}
+	]
+}
