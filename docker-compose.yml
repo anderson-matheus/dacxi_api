@@ -22,7 +22,7 @@ services:
     working_dir: /var/www/html/dacxi_api
   
   mysql:
-    image: mysql:8.0.27
+    image: mariadb:10.3
     container_name: mysql
     environment:
       - MYSQL_DATABASE=${DB_DATABASE}
@@ -33,14 +33,6 @@ services:
       - "3306:3306"
     volumes:
       - ./database/mysql:/var/lib/mysql
-  
-  composer:
-    container_name: composer
-    image: composer/composer
-    volumes:
-      - ./:/var/www/html/dacxi_api
-    working_dir: /var/www/html/dacxi_api
-    command: install
 
   cron:
     container_name: cron
