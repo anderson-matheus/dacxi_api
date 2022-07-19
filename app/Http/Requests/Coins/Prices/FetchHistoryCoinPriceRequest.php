@@ -6,25 +6,22 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class FetchHistoryCoinPriceRequest extends FormRequest
 {
-    /**
-     * Determine if the user is authorized to make this request.
-     *
-     * @return bool
-     */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
-    /**
-     * Get the validation rules that apply to the request.
-     *
-     * @return array
-     */
+    protected function prepareForValidation()
+    {
+        $this->merge([
+            'symbol' => $this->symbol,
+        ]);
+    }
+
     public function rules()
     {
         return [
-            //
+            'symbol' => 'required|exists:coins,symbol',
         ];
     }
 }

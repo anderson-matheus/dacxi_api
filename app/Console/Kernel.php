@@ -15,9 +15,9 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        $schedule->command('import:cryptos')->everyMinute();
-        $schedule->command('import:bitcoin-price')->everyMinute();
-        $schedule->command('import:crypto-prices')->everyMinute();
+        $schedule->command('import:cryptos')->daily();
+        $schedule->command('import:bitcoin-price')->hourly();
+        $schedule->command('import:crypto-prices')->everyThreeHours();
     }
 
     /**

@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Coins\Prices\FetchHistoryCoinPriceRequest;
+use App\Http\Requests\Coins\Prices\FetchLatestCoinPriceRequest;
+use App\Http\Requests\Coins\Prices\WatchCoinPriceRequest;
 use App\Repositories\CoinRepository;
 use App\Repositories\PriceRepository;
-use App\Services\PriceService;
 use Exception;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 
 class CoinPriceController extends Controller
@@ -17,13 +18,12 @@ class CoinPriceController extends Controller
 
     public function __construct(
         CoinRepository $coinRepository = null,
-        PriceRepository $priceRepository = null)
-    {
+        PriceRepository $priceRepository = null) {
         $this->coinRepository = $coinRepository ?? new CoinRepository();
         $this->priceRepository = $priceRepository ?? new PriceRepository();
     }
 
-    public function fetchLatestCoinPrice($symbol, Request $request)
+    public function fetchLatestCoinPrice($symbol, FetchHistoryCoinPriceRequest $request)
     {
         try {
             $coins = $this->coinRepository->fetchCoins(['symbols' => [$symbol]]);
@@ -36,7 +36,7 @@ class CoinPriceController extends Controller
         }
     }
 
-    public function fetchHistoryCoinPrice($symbol, Request $request)
+    public function fetchHistoryCoinPrice($symbol, FetchLatestCoinPriceRequest $request)
     {
         try {
             $coins = $this->coinRepository->fetchCoins(['symbols' => [$symbol]]);
@@ -49,7 +49,7 @@ class CoinPriceController extends Controller
         }
     }
 
-    public function watchCoinPrice($symbol, Request $request)
+    public function watchCoinPrice($symbol, WatchCoinPriceRequest $request)
     {
         try {
             $coin = $this->coinRepository->activeBySymbol($symbol);
